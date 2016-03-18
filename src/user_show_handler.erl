@@ -13,12 +13,10 @@ init(_, Req, _Opts) ->
 	{ok, Req, #state{}}.
 
 handle(Req, State=#state{}) ->
-  {Id, Req2} = cowboy_req:binding(id, Req),
-  io:put_chars(Id),
-  {ok, Req3} = cowboy_req:reply(200, Req2),
-  {ok, Req3, State}.
-  %{ok, Req3} = ferl_auth:unauthorized(Req),
-	%{ok, Req3, State}.
+  {Id, _} = cowboy_req:binding(id, Req),
+  {_IdInt, []} = string:to_integer(binary_to_list(Id)),
+  {ok, Req2} = ferl_auth:unauthorized(Req),
+	{ok, Req2, State}.
 
 is_authorized(Req, State) ->
   {{false, <<"Basic realm=\"restful\"">>}, Req, State}.
