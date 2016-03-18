@@ -6,7 +6,10 @@
 
 start(_Type, _Args) ->
   Dispatch = cowboy_router:compile([
-    {'_', [{"/", root_handler, []}]}
+    {'_', [
+      {"/", root_handler, []},
+      {"/user/:id", user_show_handler, []}
+    ]}
   ]),
   {ok, _} = cowboy:start_http(ferl_app, 100,
     [{port, 8181}],
