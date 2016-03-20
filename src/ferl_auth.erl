@@ -8,5 +8,5 @@ unauthorized(Req) ->
   ], unauthorized_body(), Req).
 
 unauthorized_body() ->
-  <<"">>.
+  <<"Unauthorized">>.
 
