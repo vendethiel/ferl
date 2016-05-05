@@ -1,5 +1,5 @@
 -module(root_handler).
--behaviour(cowboy_http_handler).
+-behavior(cowboy_http_handler).
 
 -export([init/3]).
 -export([handle/2]).

@@ -1,5 +1,6 @@
 -module(user_show_handler).
--behaviour(cowboy_http_handler).
+-behavior(cowboy_http_handler).
+
 -include("user.hrl").
 
 -export([init/3]).
