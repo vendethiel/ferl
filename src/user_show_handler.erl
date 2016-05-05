@@ -14,11 +14,12 @@ init(_, Req, _Opts) ->
 	{ok, Req, #state{}}.
 
 handle(Req, State=#state{}) ->
-  {Id, _} = cowboy_req:binding(id, Req),
-  _IdInt = binary_to_integer(Id),
   %{ok, Req2} = ferl_auth:unauthorized(Req),
-  User = #user{},
-  {ok, Req2} = cowboy_req:reply(200, "hey", Req),
+  {Id, _} = cowboy_req:binding(id, Req),
+  IdInt = binary_to_integer(Id),
+  User = #user{id=IdInt},
+  Json = ferl_json:user(User),
+  {ok, Req2} = cowboy_req:reply(200, [], Json, Req),
 	{ok, Req2, State}.
 
 terminate(_Reason, _Req, _State) ->

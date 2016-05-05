@@ -1,1 +1,1 @@
--record(user, {firstname = "", lastname = ""}).
+-record(user, {id = 0, firstname = "", lastname = ""}).
